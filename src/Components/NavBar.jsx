@@ -16,7 +16,7 @@ const NavBar = () => {
                 <h1>🏠 HomeNest</h1>
                 {
                     see?
-                    <div className='flex flex-col relative top-8 -left-35 z-100 '>
+                    <div className='flex flex-col relative top-8 -left-42 z-100 '>
                 <NavLink to='/' className={({isActive})=>isActive?"text-[#2563EB]":""}>Home</NavLink>
                 <NavLink to='/' className={({isActive})=>isActive?"text-[#2563EB]":""}>All Properties</NavLink>
                 {

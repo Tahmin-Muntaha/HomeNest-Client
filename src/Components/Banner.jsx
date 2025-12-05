@@ -2,7 +2,7 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <div>
+        <div className='mb-16'>
             <p className='font-bold text-xl text-center mb-2 text-[#1E40AF]'>Find Your Perfect Home Today.</p>
            <div className="carousel w-full h-[400px]">
   <div id="slide1" className="carousel-item relative w-full">
