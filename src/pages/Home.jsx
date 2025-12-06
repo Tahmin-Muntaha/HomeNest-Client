@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../Components/NavBar';
 import Banner from '../Components/Banner';
+import { data } from 'react-router';
+import Property from '../Components/Property';
 
 const Home = () => {
+    const [properties,setProperties]=useState([])
+    const[loading,setLoading]=useState(true)
+    useEffect(()=>{
+        fetch('http://localhost:3000/latest-properties')
+        .then(res=>res.json())
+        .then(data=>{
+            setProperties(data)
+            setLoading(false)
+        })
+    },[])
+    console.log(properties)
     return (
         <div>
             <Banner></Banner>
+            <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mb-16'>
+                {
+                    properties.map(property=><Property property={property}></Property>)
+                }
+            </div>
             <div>
                 <p className='font-bold text-xl text-center mb-2 text-[#1E40AF]'>Why Choose Us</p>
                 <div className='flex items-center justify-center p-12 md:p-24 gap-4 md:gap-20 shadow-2xl'>
