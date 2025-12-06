@@ -9,6 +9,7 @@ import SeeDetails from "../Components/SeeDetails";
 import PrivateRouter from '../Routes/PrivateRouter'
 import MyRatings from "../Components/MyRatings";
 import Post from "../Components/Post";
+import MyProperty from "../Components/MyProperty";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +47,12 @@ export const router = createBrowserRouter([
       path:'/post',
       element:<PrivateRouter>
         <Post></Post>
+      </PrivateRouter>
+    },
+    {
+      path:'/myproperty/:email',
+      element:<PrivateRouter>
+        <MyProperty></MyProperty>
       </PrivateRouter>
     }
 

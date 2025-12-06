@@ -26,7 +26,7 @@ const NavBar = () => {
                     user?
                     <div className='flex flex-col'>
                         <NavLink to='/post' className={({isActive})=>isActive?"text-[#2563EB]":""}>Add Properties</NavLink>
-                <NavLink to='/' className={({isActive})=>isActive?"text-[#2563EB]":""}>My Properties</NavLink>
+                <NavLink to={`/myproperty/${user.email}`} className={({isActive})=>isActive?"text-[#2563EB]":""}>My Properties</NavLink>
                 <NavLink to={`/reviews/${user.email}`}  className={({isActive})=>isActive?"text-[#2563EB]":""}>My Ratings</NavLink>
                         </div>
                         :" "
