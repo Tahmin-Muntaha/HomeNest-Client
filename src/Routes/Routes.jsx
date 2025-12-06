@@ -65,6 +65,7 @@ export const router = createBrowserRouter([
           </PrivateRouter>
         )
       },
+      
 
   ]
 }
