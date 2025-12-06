@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import { signOut } from 'firebase/auth';
@@ -8,6 +8,15 @@ import { toast } from 'react-toastify';
 
 const Profile = () => {
     const {user,setUser}=useContext(AuthContext)
+    const [theme,setTheme]=useState(localStorage.getItem('theme') || 'light')
+    useEffect(()=>{
+        const html=document.querySelector('html')
+        html.setAttribute('data-theme',theme)
+        localStorage.setItem('theme',theme)
+
+    },[theme])
+        
+    
     const navigate=useNavigate()
     const handleSignOut=()=>{
         signOut(auth)
@@ -22,6 +31,9 @@ const Profile = () => {
 
         })
     }
+    const handleTheme=(checked)=>{
+        setTheme(checked?"dark":"light")
+    }
     console.log(user)
     return (
         <div>
@@ -30,9 +42,22 @@ const Profile = () => {
   <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
     <li><a>{user.displayName}</a></li>
     <li><a>{user.email}</a></li>
+    
+    <li><a>
+        <input
+           onChange={(e)=> handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle"/>
+        
+        </a></li>
+              
+             
     <li><a><button className='px-4 py-2 border hover:bg-[#FACC15]' type="button" onClick={handleSignOut}>Sign Out</button></a></li>
+    
   </ul>
 </div>
+
         </div>
     );
 };
