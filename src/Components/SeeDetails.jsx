@@ -1,9 +1,13 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
+import { AuthContext } from '../Context/AuthContext';
+import { toast } from 'react-toastify';
 
 const SeeDetails = () => {
+    const {user}=useContext(AuthContext)
     const {id}=useParams()
     const [property,setProperty]=useState({})
     const [loading,setLoading]=useState(true)
@@ -15,10 +19,37 @@ const SeeDetails = () => {
             setLoading(false)
         })
     },[])
+    const handleRating=(e)=>{
+        e.preventDefault()
+        const rating=e.target.rating?.value
+        const review=e.target.review?.value
+    fetch('http://localhost:3000/reviews',{
+      method:'POST',
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body:JSON.stringify({propertyId: property._id,
+  propertyName: property.propertyName,
+  rated_by: user.email,
+  user_name: user.displayName,
+  imgae:property.imageLink,
+  rating,
+  review,
+  postedAt: new Date()})
+    }).then(res=>res.json())
+    .then(data=>{
+      toast.success('Successful')
+    })
+    .catch(err=>{
+      toast.error(err.message)
+    })
+    
+  }
+
     if(loading) return <div>loading..</div>
     console.log(property)
     return (
-        <div className='flex gap-4'>
+        <div className='flex gap-4 items-center justify-center'>
             <div>
                 <img src={property.imageLink} className=' md:h-[400px]'></img>
             </div>
@@ -29,18 +60,18 @@ const SeeDetails = () => {
                 <p>__Location : {property.location}</p>
                 <p>__Posted by : {property.userName}</p>
                 <p>__Description : {property.description}</p>
-                <form>
+                <form onSubmit={handleRating}>
                     <div>
                         <label>__Rating : </label>
                         <br></br>
-                        <input type="text" placeholder='Rate this property(1 to 5)' className='border pl-2 pr-8 py-2' ></input>
+                        <input type="text" name="rating" placeholder='Rate this property(1 to 5)' className='border pl-2 pr-8 py-2' ></input>
                     </div>
                      <div>
                         <label>__Review : </label>
                         <br></br>
-                        <input type="text" placeholder='Review this property' className='border pl-2 pr-8 py-2' ></input>
+                        <input type="text" name="review" placeholder='Review this property' className='border pl-2 pr-8 py-2' ></input>
                     </div>
-                    <button type="button" className='px-4 py-2 hover:bg-[#FACC15] my-2 rounded-2xl border' >Submit</button>
+                    <button type="submit" className='px-4 py-2 hover:bg-[#FACC15] my-2 rounded-2xl border'>Submit</button>
                 </form>
             </div>
         </div>
