@@ -6,7 +6,7 @@ import All from "../Components/All";
 import SignUp from "../pages/SignUp";
 import LogIn from "../pages/LogIn";
 import SeeDetails from "../Components/SeeDetails";
-
+import PrivateRouter from '../Routes/PrivateRouter'
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -29,8 +29,10 @@ export const router = createBrowserRouter([
       Component:LogIn
     },
     {
-      path:'/details',
-      Component:SeeDetails
+      path:'/details/:id',
+      element:<PrivateRouter>
+        <SeeDetails></SeeDetails>
+      </PrivateRouter>
     }
 
   ]

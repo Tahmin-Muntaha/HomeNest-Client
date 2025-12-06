@@ -15,6 +15,7 @@ const All = () => {
         })
     },[])
     console.log(proerties)
+    if(loading ) return <div>loading..</div>
     return (
         <div className='grid grid-cols-2 md:grid-cols-3 gap-6'>
            {

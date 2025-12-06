@@ -6,9 +6,10 @@ import { toast } from 'react-toastify';
 
 const Property = ({property}) => {
     const {user}=useContext(AuthContext)
+    const {_id}=property
     const navigate=useNavigate()
     const handleSeeDetails=()=>{
-        user?( navigate('/details')):
+        user?( navigate(`/details/${_id}`)):
         (
         navigate('/signup'),
         toast.error('Plz Sign Up/ Sign In first'))
