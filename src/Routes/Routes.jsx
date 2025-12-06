@@ -10,6 +10,7 @@ import PrivateRouter from '../Routes/PrivateRouter'
 import MyRatings from "../Components/MyRatings";
 import Post from "../Components/Post";
 import MyProperty from "../Components/MyProperty";
+import Update from "../Components/update";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -54,7 +55,16 @@ export const router = createBrowserRouter([
       element:<PrivateRouter>
         <MyProperty></MyProperty>
       </PrivateRouter>
-    }
+    },
+     {
+        path: "/update/:id",
+        loader:({params})=>fetch(`http://localhost:3000/properties/${params.id}`),
+        element: (
+          <PrivateRouter>
+            <Update></Update>
+          </PrivateRouter>
+        )
+      },
 
   ]
 }

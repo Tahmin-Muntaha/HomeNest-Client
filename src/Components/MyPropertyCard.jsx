@@ -39,10 +39,10 @@ const MyPropertyCard = ({property}) => {
                 <button className='px-2 py-4 border rounded-2xl  bg-white text-black hover:bg-[#FACC15]' onClick={handleSeeDetails}>See Details</button>
             </div>
             <div className='my-2'>
-                <button className='px-2 py-4 border rounded-2xl  bg-white text-black hover:bg-[#FACC15]' onClick={''}>Update</button>
+                <button className='px-2 py-4 border rounded-2xl  bg-white text-black hover:bg-[#FACC15]' onClick={()=>navigate(`/update/${_id}`)}>Update</button>
             </div>
             <div className='my-2'>
-                <button className='px-2 py-4 border rounded-2xl  bg-white text-black hover:bg-[#FACC15]' onClick={''}>Delete</button>
+                <button className='px-2 py-4 border rounded-2xl  bg-white text-black hover:bg-[#FACC15]' onClick={()=>{}}>Delete</button>
             </div>
             </div>
             
