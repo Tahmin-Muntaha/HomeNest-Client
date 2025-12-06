@@ -6,68 +6,77 @@ import All from "../Components/All";
 import SignUp from "../pages/SignUp";
 import LogIn from "../pages/LogIn";
 import SeeDetails from "../Components/SeeDetails";
-import PrivateRouter from '../Routes/PrivateRouter'
+import PrivateRouter from "../Routes/PrivateRouter";
 import MyRatings from "../Components/MyRatings";
 import Post from "../Components/Post";
 import MyProperty from "../Components/MyProperty";
 import Update from "../Components/update";
+import Error from "../Components/Error";
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component:Root,
-  
-  children:[
-    {
-        index:true,
-        Component:Home
-    },
-    {
-      path:'/all',
-      Component:All
-    },{
-      path:'/signup',
-      Component:SignUp
-    },
-    {
-      path:'/login',
-      Component:LogIn
-    },
-    {
-      path:'/details/:id',
-      element:<PrivateRouter>
-        <SeeDetails></SeeDetails>
-      </PrivateRouter>
-    },
-    {
-      path:'/reviews/:email',
-      element:<PrivateRouter>
-        <MyRatings></MyRatings>
-      </PrivateRouter>
-    },
-    {
-      path:'/post',
-      element:<PrivateRouter>
-        <Post></Post>
-      </PrivateRouter>
-    },
-    {
-      path:'/myproperty/:email',
-      element:<PrivateRouter>
-        <MyProperty></MyProperty>
-      </PrivateRouter>
-    },
-     {
+    errorElement:<Error></Error>,
+    Component: Root,
+
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/all",
+        Component: All,
+      },
+      {
+        path: "/signup",
+        Component: SignUp,
+      },
+      {
+        path: "/login",
+        Component: LogIn,
+      },
+      {
+        path: "/details/:id",
+        element: (
+          <PrivateRouter>
+            <SeeDetails></SeeDetails>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/reviews/:email",
+        element: (
+          <PrivateRouter>
+            <MyRatings></MyRatings>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/post",
+        element: (
+          <PrivateRouter>
+            <Post></Post>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/myproperty/:email",
+        element: (
+          <PrivateRouter>
+            <MyProperty></MyProperty>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "/update/:id",
-        loader:({params})=>fetch(`http://localhost:3000/properties/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://homenest-eight.vercel.app/properties/${params.id}`),
         element: (
           <PrivateRouter>
             <Update></Update>
           </PrivateRouter>
-        )
+        ),
       },
-      
-
-  ]
-}
-  
+    ],
+  },
 ]);
