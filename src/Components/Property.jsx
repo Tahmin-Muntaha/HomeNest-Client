@@ -14,7 +14,7 @@ const Property = ({property}) => {
         navigate('/signup'),
         toast.error('Plz Sign Up/ Sign In first'))
     }
-    console.log(property)
+    
     return (
         <div className='shadow-2xl p-8  rounded-2xl bg-[#0d1a45] text-white'>
             <div className='flex items-center '>

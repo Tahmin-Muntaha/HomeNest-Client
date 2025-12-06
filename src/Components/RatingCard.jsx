@@ -1,7 +1,7 @@
 import React from 'react';
 
 const RatingCard = ({r}) => {
-    console.log(r)
+    
     return (
        <div className='shadow-2xl p-8  rounded-2xl bg-[#0d1a45] text-white'>
             <div className='flex items-center '>
