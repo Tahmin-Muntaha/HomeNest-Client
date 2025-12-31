@@ -38,7 +38,7 @@ Follow these steps to run **HomeNest** locally:
 
 ```bash
 # 1️⃣ Clone the repository
-git clone https://github.com/YOUR_USERNAME/HomeNest.git
+git clone https://github.com/Tahmin-Muntaha/HomeNest-Client.git
 
 # 2️⃣ Navigate to the project folder
 cd HomeNest
