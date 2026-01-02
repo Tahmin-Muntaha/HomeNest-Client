@@ -30,10 +30,9 @@ const MyProperty = () => {
   </div>;
   return (
     <div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-        {my.map((property) => (
-          <MyPropertyCard property={property}></MyPropertyCard>
-        ))}
+      <div className="">
+        <MyPropertyCard my={my}></MyPropertyCard>
+        
       </div>
     </div>
   );

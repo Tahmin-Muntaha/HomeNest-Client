@@ -1,29 +1,59 @@
+import { DollarSign, DollarSignIcon, MapPinned, MapPinnedIcon, Notebook, Star } from 'lucide-react';
 import React from 'react';
 
-const RatingCard = ({r}) => {
+const RatingCard = ({rating}) => {
     
     return (
-       <div className='shadow-2xl p-8  rounded-2xl bg-[#0d1a45] text-white'>
-            <div className='flex items-center '>
-                <img src={r.imgae} className='h-[300px] w-full'></img>
-            </div>
-            <div className='flex justify-between items-center py-2'>
-                <p className='font-bold'>{r.propertyName}</p>
-                <p className='bg-white text-black p-1 rounded-2xl'>{r.user_name
+       
+  <div className=" rounded-2xl shadow-xl bg-white dark:bg-gray-900  overflow-x-auto ">
+    <table className="min-w-[900px] w-full">
+            <thead className="bg-[#3A5A9B] text-white">
+        <tr>
+          <th className="px-6 py-4 text-left font-semibold">Image</th>
+          <th className="px-6 py-4 text-left font-semibold">Property</th>
+          
+          <th className="px-6 py-4 text-left font-semibold">Rating</th>
+          <th className="px-6 py-4 text-left font-semibold">Review</th>
+        </tr>
+      </thead>
 
-}</p>
-            </div>
-            <div>
-                <p>__Rating : {r.rating}</p>
-                <p>__Review : {r.review
-}</p>
-            </div>
-            <div>
-                <p>__Posted at : {r.postedAt
-}</p>
-            </div>
-            
-        </div>
+            <tbody className=" ">
+       {
+        rating.map(r=>
+             <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+          <td className="px-6 py-4">
+            <img
+              src={r.image}
+              alt={r.propertyName}
+              className="h-20 w-28 object-cover rounded-xl"
+            />
+          </td>
+
+          <td className="px-6 py-4 font-semibold text-[#3A5A9B] dark:text-white">
+            {r.propertyName}
+          </td>
+
+          
+         
+             <td className="px-6 py-4 flex items-center gap-2 my-6">
+            <Star size={16} className="text-[#4FA3A5]" />
+            <span className="font-semibold dark:text-white">
+              {r.rating}
+            </span>
+          </td>
+         
+
+          <td className="px-6 py-4 text-gray-600 dark:text-gray-300 max-w-xs truncate">
+            {r.review}
+          </td>
+        </tr>
+        )
+       }
+      </tbody>
+          </table>
+  </div>
+
+
     );
 };
 

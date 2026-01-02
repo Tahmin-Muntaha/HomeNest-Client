@@ -29,10 +29,9 @@ const MyRatings = () => {
     </div>
   </div>;
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-      {rating.map((r) => (
-        <RatingCard r={r}></RatingCard>
-      ))}
+    <div className="">
+      <RatingCard rating={rating}></RatingCard>
+      
     </div>
   );
 };

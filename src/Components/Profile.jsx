@@ -36,7 +36,7 @@ const Profile = () => {
 
     return (
         <div>
-            <div className="dropdown dropdown-end">
+            <div className="dropdown dropdown-end z-100">
                 <div
                     tabIndex={0}
                     role="button"
@@ -77,7 +77,7 @@ const Profile = () => {
                     <li>
                         
                         <button
-                className="px-4 py-2 border rounded-full text-[#4FA3A5] hover:bg-[#4FA3A5] hover:text-white"
+                className="px-4 py-2 border rounded-xl text-[#4FA3A5] hover:bg-[#4FA3A5] hover:text-white"
                 onClick={handleSignOut}
               >
                 Sign Out

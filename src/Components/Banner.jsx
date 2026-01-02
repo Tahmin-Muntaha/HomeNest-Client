@@ -2,7 +2,7 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <><p>banner</p></>
+        <div className='z-10 mb-20'><p>banner</p></div>
     );
 };
 

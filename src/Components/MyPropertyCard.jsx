@@ -4,16 +4,15 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
-const MyPropertyCard = ({ property }) => {
-  const { user } = useContext(AuthContext);
-  const { _id } = property;
+const MyPropertyCard = ({ my }) => {
+  
+  
   const navigate = useNavigate();
-  const handleSeeDetails = () => {
-    user
-      ? navigate(`/details/${_id}`)
-      : (navigate("/signup"), toast.error("Plz Sign Up/ Sign In first"));
+  const handleSeeDetails = (_id) => {
+     navigate(`/details/${_id}`)
+      
   };
-  const handleDelete = () => {
+  const handleDelete = (_id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -44,55 +43,94 @@ const MyPropertyCard = ({ property }) => {
   };
   return (
     <div>
-      <div className="shadow-2xl p-8  rounded-2xl bg-[#0d1a45] text-white">
-        <div className="flex items-center ">
-          <img src={property.imageLink} className="h-[300px] w-full"></img>
-        </div>
-        <div className="flex justify-between items-center py-2">
-          <p className="font-bold">{property.propertyName}</p>
-          <p className="bg-white text-black p-1 rounded-2xl">
-            {property.category}
-          </p>
-        </div>
-        <div>
-          <p>__Price : {property.price}</p>
-          <p>__Location : {property.location}</p>
-        </div>
-        <div>
-          <p>__Posted by : {property.userName}</p>
-        </div>
-        <div>
-          <p>__Posted at : {property.postedAt}</p>
-        </div>
-        <div className="flex gap-4">
-          <div className="my-2">
+      
+      <div className=" rounded-2xl shadow-xl bg-white dark:bg-gray-900  overflow-x-auto ">
+    <table className="min-w-[900px] w-full">
+            <thead className="bg-[#3A5A9B] text-white">
+        <tr>
+          <th className="px-6 py-4 text-left font-semibold">Image</th>
+          <th className="px-6 py-4 text-left font-semibold">Property</th>
+          
+          <th className="px-6 py-4 text-left font-semibold">Category</th>
+          <th className="px-6 py-4 text-left font-semibold">Price</th>
+          <th className="px-6 py-4 text-left font-semibold">Location</th>
+          
+          <th className="px-6 py-4 text-left font-semibold">Posted At</th>
+          <th className="px-6 py-4 text-left font-semibold">Details</th>
+          <th className="px-6 py-4 text-left font-semibold">Update</th>
+          <th className="px-6 py-4 text-left font-semibold">Delete</th>
+        </tr>
+      </thead>
+
+            <tbody className=" ">
+              {
+                my.map(property=>
+                   <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+          <td className="px-6 py-4">
+            <img
+              src={property.imageLink}
+              alt={property.propertyName}
+              className="h-20 w-28 object-cover rounded-xl"
+            />
+          </td>
+
+          <td className="px-6 py-4 font-semibold text-[#3A5A9B] dark:text-white">
+            {property.propertyName}
+          </td>
+
+          
+         <td className="px-6 py-4 text-gray-600 dark:text-gray-300 max-w-xs truncate">
+           {property.category}
+          </td>
+            
+         
+
+          <td className="px-6 py-4 text-gray-600 dark:text-gray-300 max-w-xs truncate">
+            {property.price}
+          </td>
+          <td className="px-6 py-4 text-gray-600 dark:text-gray-300 max-w-xs truncate">
+            {property.location}
+          </td>
+          
+          <td className="px-6 py-4 text-gray-600 dark:text-gray-300 max-w-xs truncate">
+            {property.postedAt}
+          </td>
+          <td className="px-6 py-4 text-gray-600 dark:text-gray-300 max-w-xs truncate">
             <button
-              className="px-2 py-4 border rounded-2xl  bg-white text-black hover:bg-[#FACC15]"
-              onClick={handleSeeDetails}
+              className="px-4 py-2 border rounded-xl text-[#4FA3A5] hover:bg-[#4FA3A5] hover:text-white"
+              onClick={()=>handleSeeDetails(property._id)}
             >
               See Details
             </button>
-          </div>
-          <div className="my-2">
+          </td>
+          <td className="px-6 py-4 text-gray-600 dark:text-gray-300 max-w-xs truncate">
             <button
-              className="px-2 py-4 border rounded-2xl  bg-white text-black hover:bg-[#FACC15]"
-              onClick={() => navigate(`/update/${_id}`)}
+              className="px-4 py-2 border rounded-xl text-[#4FA3A5] hover:bg-[#4FA3A5] hover:text-white"
+              onClick={() => navigate(`/update/${property._id}`)}
             >
               Update
             </button>
-          </div>
-          <div className="my-2">
+          </td>
+          <td className="px-6 py-4 text-gray-600 dark:text-gray-300 max-w-xs truncate">
             <button
-              className="px-2 py-4 border rounded-2xl  bg-white text-black hover:bg-[#FACC15]"
-              onClick={() => handleDelete()}
+              className="px-4 py-2 border rounded-xl text-[#4FA3A5] hover:bg-[#4FA3A5] hover:text-white"
+              onClick={() => handleDelete(property._id)}
             >
               Delete
             </button>
-          </div>
-        </div>
-      </div>
+          </td>
+        </tr>)
+                
+              }
+            </tbody>
+          </table>
+  </div>
+
     </div>
   );
 };
 
 export default MyPropertyCard;
+
+
+

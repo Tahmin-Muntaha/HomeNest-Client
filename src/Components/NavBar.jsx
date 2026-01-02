@@ -9,7 +9,7 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white dark:bg-slate-900 border-b shadow-sm sticky top-0">
+    <div className="bg-white dark:bg-slate-900 border-b shadow-sm sticky top-0 mb-20">
       <div className="flex justify-between items-center px-4 py-3 md:px-8 max-w-7xl mx-auto">
 
         <h1 className="flex items-center gap-1 text-xl font-bold text-[#3A5A9B]" onClick={()=>{navigate('/')}}>
@@ -19,7 +19,7 @@ const NavBar = () => {
 
         <div className="flex items-center gap-3">
 
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-end z-100">
             <div
               tabIndex={0}
               role="button"
@@ -54,8 +54,11 @@ const NavBar = () => {
                 </>
               )}
 
-              <NavLink to="/" className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
+              <NavLink to="/about" className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
                 About Us
+              </NavLink>
+              <NavLink to="/term" className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
+                Term and Conditions
               </NavLink>
             </ul>
           </div>
@@ -65,13 +68,13 @@ const NavBar = () => {
           ) : (
             <>
               <button
-                className="px-4 py-2 border rounded-full text-[#3A5A9B] hover:bg-[#3A5A9B] hover:text-white"
+                className="px-4 py-2 border rounded-xl text-[#3A5A9B] hover:bg-[#3A5A9B] hover:text-white"
                 onClick={() => navigate('/signup')}
               >
                 Sign up
               </button>
               <button
-                className="px-4 py-2 border rounded-full text-[#4FA3A5] hover:bg-[#4FA3A5] hover:text-white"
+                className="px-4 py-2 border rounded-xl text-[#4FA3A5] hover:bg-[#4FA3A5] hover:text-white"
                 onClick={() => navigate('/login')}
               >
                 Log In

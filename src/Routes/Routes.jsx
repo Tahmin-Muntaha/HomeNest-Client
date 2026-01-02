@@ -12,6 +12,8 @@ import Post from "../Components/Post";
 import MyProperty from "../Components/MyProperty";
 import Update from "../Components/update";
 import Error from "../Components/Error";
+import About from "../Components/About";
+import Term from "../Components/Term";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -76,6 +78,14 @@ export const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+      {
+        path:'/about',
+        element:<About></About>
+      },
+      {
+        path:'/term',
+        element:<Term></Term>
+      }
     ],
   },
 ]);

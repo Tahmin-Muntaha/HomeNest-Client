@@ -1,87 +1,114 @@
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { Eye, EyeClosed } from 'lucide-react';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { auth } from '../firebase/firebase.config';
-import { GoogleAuthProvider } from 'firebase/auth';
-
+import { toast } from 'react-toastify';
 import { AuthContext } from '../Context/AuthContext';
 import { useNavigate } from 'react-router';
-import { toast } from 'react-toastify';
 
 const LogIn = () => {
-    
-    const navigate=useNavigate()
-    const [see,setSee]=useState(true)
-    const provider=new GoogleAuthProvider()
-    const handleSignUp=(e)=>
+    const [see, setSee] = useState(true);
+    const navigate = useNavigate();
+    const provider = new GoogleAuthProvider();
+    const { setUser } = useContext(AuthContext);
 
-    {
-        e.preventDefault()
-        const email=e.target.email?.value
-        const password=e.target.password?.value
-        signInWithEmailAndPassword(auth,email,password)
-        .then((res)=>{
-            console.log(res)
-            navigate('/')
-            toast.success('Sign In successful')
-        })
-        .catch((err)=>{
-            console.log(err)
-            toast.error(err.message)
-        })
-    }
-    const handleGoogleSignIn=()=>{
-            signInWithPopup(auth,provider)
-            .then(()=>{
-                
-                navigate('/')
-                toast.success('Sign Up succesful with google')
-            }
-    
-            ).catch(err=>{
-                console.log(err)
-                toast.error(err.message)}
-            )
-    
-        }
-        
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then(res => {
+                setUser(res.user);
+                navigate('/');
+                toast.success('Log  In successful');
+            })
+            .catch(err => toast.error(err.message));
+    };
+
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+            .then(res => {
+                setUser(res.user);
+                navigate('/');
+                toast.success('Log In successful with Google');
+            })
+            .catch(err => toast.error(err.message));
+    };
+
     return (
-         <div className='flex gap-0 items-center shadow-2xl max-w-[800px] mx-auto'>
-            <div>
-                <img src="https://images.unsplash.com/photo-1512403754473-27835f7b9984?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJ1aWxkaW5nfGVufDB8fDB8fHww" className='h-[530px] '></img>
-            </div>
-        <div className=' p-10 '>
-           <p className='font-bold text-xl text-center mb-2 text-[#1E40AF]'>Sign In</p>
-           <form onSubmit={handleSignUp}>
-            
-            <div>
-                <label className='text-xl text-[#050505] mb-2'>__Email</label>
-                <br></br>
-                <input type="text" name="email" placeholder="enter your email" className='border  pl-2 pr-36 py-2'></input>
-            </div>
-             
-            <div className='absolute'>
-                <label className='text-xl text-[#050505] mb-2'>__Password</label>
-                <br></br>
-                <input type={see?"text":"password"} name="password" placeholder="enter your password" className='border  pl-2 pr-36 py-2'></input>
-                <div className='relative -top-8 left-74' onClick={()=>setSee(!see)}>{
-                    see?<Eye></Eye>:<EyeClosed></EyeClosed>
-                    }</div>
-            </div>
-            <div className='my-3 flex justify-center'>
-                <button className='px-4 py-2 border rounded hover:bg-[#FACC15] mt-20'>Sign In</button>
-            </div>
-          <div className='flex items-center gap-5'>
-              <div className='flex items-center gap-2'>
-                <p>New in<br></br>our website?</p>
+        <div className="min-h-screen flex items-center justify-center bg-[#F0F4F8] p-4 dark:bg-[#1E293B]">
+            <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden dark:bg-[#111827]">
                 
-                <button className='px-4 py-2 border rounded hover:bg-[#FACC15]' type="button" onClick={()=>navigate('/signup')}>Sign Up</button>
+                <div className="h-48 w-full">
+                    <img
+                        src="https://images.unsplash.com/photo-1512403754473-27835f7b9984?w=1000&auto=format&fit=crop&q=60"
+                        alt="Login banner"
+                        className="h-full w-full object-cover"
+                    />
+                </div>
+
+                <div className="p-8 space-y-5">
+                    <h2 className="text-2xl font-bold text-center text-[#3A5A9B] dark:text-white">
+                        Log In
+                    </h2>
+
+                    <form onSubmit={handleLogin} className="space-y-4">
+                        <div className="flex flex-col">
+                            <label className="mb-1 text-[#3A5A9B] dark:text-white">Email</label>
+                            <input
+                                name="email"
+                                className="w-full border border-[#3A5A9B] px-3 py-2 rounded placeholder-gray-400 dark:bg-[#1E293B] dark:text-white"
+                                defaultValue="tahminmuntaha66@gmail.com"
+                                placeholder="Enter your email"
+                            />
+                        </div>
+
+                        <div className="flex flex-col relative">
+                            <label className="mb-1 text-[#3A5A9B] dark:text-white">Password</label>
+                            <input
+                                type={see ? 'text' : 'password'}
+                                name="password"
+                                className="w-full border border-[#3A5A9B] px-3 py-2 rounded pr-10 placeholder-gray-400 dark:bg-[#1E293B] dark:text-white"
+                                placeholder="Enter your password"
+                                defaultValue="1234Qw"
+                            />
+                            <div
+                                className="absolute right-3 top-9 cursor-pointer text-[#4FA3A5]"
+                                onClick={() => setSee(!see)}
+                            >
+                                {see ? <Eye size={18} /> : <EyeClosed size={18} />}
+                            </div>
+                        </div>
+                        <p className='text-sm dark:text-white'>Want to see Private Routes?Use default credentials.</p>
+                        <p className='text-sm dark:text-white'></p>
+                        <button 
+                            className="w-full text-center px-4 py-2 border rounded-xl text-[#3A5A9B] hover:bg-[#3A5A9B] hover:text-white dark:text-[#4FA3A5] dark:hover:bg-[#4FA3A5] dark:hover:text-white"
+                        >
+                            Log In
+                        </button>
+
+                        <div className="flex items-center text-sm gap-2">
+                            <p className="text-[#3A5A9B] dark:text-white">New to our website?</p>
+                            <button
+                                type="button"
+                                className="px-2 py-2 rounded-xl text-[#4FA3A5] hover:underline"
+                                onClick={() => navigate('/signup')}
+                            >
+                                Sign Up
+                            </button>
+                        </div>
+
+                        <button
+                            type="button"
+                            className="text-[#4FA3A5] hover:underline"
+                            onClick={handleGoogleSignIn}
+                        >
+                            Continue with Google
+                        </button>
+                    </form>
+                </div>
             </div>
-            <div><button className='px-4 py-2 border rounded hover:bg-[#FACC15]' type="button" onClick={handleGoogleSignIn}>Log In with Google</button></div>
-          </div>
-           </form>
-        </div>
         </div>
     );
 };
