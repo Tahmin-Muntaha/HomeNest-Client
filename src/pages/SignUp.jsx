@@ -72,7 +72,7 @@ const SignUp = () => {
                                 name="name"
                                 className="w-full border border-[#3A5A9B] px-3 py-2 rounded dark:bg-[#1E293B] dark:text-white placeholder-gray-400"
                                 placeholder="Enter your name"
-                                defaultValue="Tahmin Muntaha"
+                                defaultValue="Tahmin Muntaha 30"
                             />
                         </div>
 
@@ -82,7 +82,7 @@ const SignUp = () => {
                                 name="email"
                                 className="w-full border border-[#3A5A9B] px-3 py-2 rounded dark:bg-[#1E293B] dark:text-white placeholder-gray-400"
                                 placeholder="Enter your email"
-                                defaultValue="tahminmuntaha66@gmail.com"
+                                defaultValue="tahminmuntaha@gmail.com"
                             />
                         </div>
 
@@ -92,7 +92,7 @@ const SignUp = () => {
                                 name="photo"
                                 className="w-full border border-[#3A5A9B] px-3 py-2 rounded dark:bg-[#1E293B] dark:text-white placeholder-gray-400"
                                 placeholder="Enter photo URL"
-                                defaultValue="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjhHAw_7EMpk4ytQsE5SRSWWLnJrD9YDQdxQ&s"
+                                defaultValue="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs5bskEIGzEJumAuziiWKQCVnMpVeq6b6D7A&s"
                             />
                         </div>
 
@@ -112,7 +112,7 @@ const SignUp = () => {
                                 {see ? <Eye size={18} /> : <EyeClosed size={18} />}
                             </div>
                         </div>
-
+<p className='text-sm'>For easy sign up use this default credentials.</p>
                         <button 
                             className="w-full text-center px-4 py-2 border rounded-xl text-[#3A5A9B] hover:bg-[#3A5A9B] hover:text-white"
                         >

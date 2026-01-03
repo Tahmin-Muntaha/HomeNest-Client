@@ -30,7 +30,9 @@ const Home = () => {
   console.log(properties);
   return (
     <div>
-      <Banner></Banner>
+      
+      <Banner className="z-10"></Banner>
+      <p className="text-3xl font-bold text-center text-[#3A5A9B] mb-12">Our Latest Properties</p>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
         {properties.map((property) => (
           <Property property={property}></Property>
@@ -41,7 +43,7 @@ const Home = () => {
     <p className="text-3xl font-bold text-center text-[#3A5A9B] mb-12">Why Choose Us</p>
     <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24">
 
-      {/* Features */}
+     
       <div className="flex-1 space-y-8">
         <div className="p-6 bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border-l-4 border-[#3A5A9B]">
           <p className="text-2xl font-semibold text-[#3A5A9B] mb-2">Trusted & Verified Listings</p>

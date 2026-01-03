@@ -9,7 +9,7 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white dark:bg-slate-900 border-b shadow-sm sticky top-0 mb-20">
+    <div className="bg-white dark:bg-slate-900 border-b shadow-sm sticky top-0 mb-20 z-100">
       <div className="flex justify-between items-center px-4 py-3 md:px-8 max-w-7xl mx-auto">
 
         <h1 className="flex items-center gap-1 text-xl font-bold text-[#3A5A9B]" onClick={()=>{navigate('/')}}>
@@ -39,9 +39,14 @@ const NavBar = () => {
               </NavLink>
 
               {user && (
+                <>
                 <NavLink to="/dash" className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
                     DashBoard
                   </NavLink>
+                  <NavLink to="/post" className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
+                    Add Property
+                  </NavLink>
+                </>
                 // <>
                 //   <NavLink to="/post" className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
                 //     Add Properties

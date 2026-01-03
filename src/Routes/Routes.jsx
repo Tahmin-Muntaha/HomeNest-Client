@@ -67,6 +67,14 @@ export const router = createBrowserRouter([
         element:<Term></Term>
       },
       {
+        path: "/post",
+        element: (
+         <PrivateRouter> <Post></Post></PrivateRouter>
+           
+         
+        ),
+      },
+      {
         path:'/dash',
         element:<PrivateRouter>
           <DashBoard></DashBoard>
@@ -77,14 +85,7 @@ export const router = createBrowserRouter([
             element:<DashboardMain></DashboardMain>
 
           },
-          {
-        path: "/dash/post",
-        element: (
-         
-            <Post></Post>
-         
-        ),
-      },
+          
       {
         path: "/dash/reviews/:email",
         element: (

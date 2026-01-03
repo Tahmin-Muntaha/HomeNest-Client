@@ -28,10 +28,7 @@ const DashBoard = () => {
             Dashboard
           </NavLink>
 
-          <NavLink to="/dash/post" className={linkStyle}>
-            <PlusSquare size={18} />
-            Add Properties
-          </NavLink>
+          
 
           <NavLink
             to={`/dash/myproperty/${user.email}`}
