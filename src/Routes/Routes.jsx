@@ -14,6 +14,8 @@ import Update from "../Components/update";
 import Error from "../Components/Error";
 import About from "../Components/About";
 import Term from "../Components/Term";
+import DashBoard from "../Components/DashBoard";
+import DashboardMain from "../Components/DashboardMain";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -44,30 +46,8 @@ export const router = createBrowserRouter([
             <SeeDetails></SeeDetails>
         ),
       },
-      {
-        path: "/reviews/:email",
-        element: (
-          <PrivateRouter>
-            <MyRatings></MyRatings>
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "/post",
-        element: (
-          <PrivateRouter>
-            <Post></Post>
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "/myproperty/:email",
-        element: (
-          <PrivateRouter>
-            <MyProperty></MyProperty>
-          </PrivateRouter>
-        ),
-      },
+      
+      
       {
         path: "/update/:id",
         loader: ({ params }) =>
@@ -85,6 +65,46 @@ export const router = createBrowserRouter([
       {
         path:'/term',
         element:<Term></Term>
+      },
+      {
+        path:'/dash',
+        element:<PrivateRouter>
+          <DashBoard></DashBoard>
+        </PrivateRouter>,
+        children:[
+          {
+            index:true,
+            element:<DashboardMain></DashboardMain>
+
+          },
+          {
+        path: "/dash/post",
+        element: (
+         
+            <Post></Post>
+         
+        ),
+      },
+      {
+        path: "/dash/reviews/:email",
+        element: (
+         
+            <MyRatings></MyRatings>
+          
+        ),
+      },
+      {
+        path: "/dash/myproperty/:email",
+        element: (
+          
+            <MyProperty></MyProperty>
+          
+        ),
+      },
+      
+          
+        ]
+
       }
     ],
   },

@@ -39,19 +39,22 @@ const NavBar = () => {
               </NavLink>
 
               {user && (
-                <>
-                  <NavLink to="/post" className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
-                    Add Properties
+                <NavLink to="/dash" className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
+                    DashBoard
                   </NavLink>
+                // <>
+                //   <NavLink to="/post" className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
+                //     Add Properties
+                //   </NavLink>
 
-                  <NavLink to={`/myproperty/${user.email}`} className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
-                    My Properties
-                  </NavLink>
+                //   <NavLink to={`/myproperty/${user.email}`} className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
+                //     My Properties
+                //   </NavLink>
 
-                  <NavLink to={`/reviews/${user.email}`} className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
-                    My Ratings
-                  </NavLink>
-                </>
+                //   <NavLink to={`/reviews/${user.email}`} className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
+                //     My Ratings
+                //   </NavLink>
+                // </>
               )}
 
               <NavLink to="/about" className={({ isActive }) => isActive ? "text-[#4FA3A5] font-semibold" : "hover:text-[#4FA3A5]"}>
